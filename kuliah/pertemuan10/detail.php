@@ -1,41 +1,34 @@
-<?php 
-require 'function.php';
-
+<?php
+require 'functions.php';
+if (!isset($_GET['id'])) {
+  header("location: latihan3.php");
+  exit;
+}
 $id = $_GET['id'];
-
-$mahasiswa = query("SELECT * FROM mahasiswa WHERE id = $id")[0];
-
-
-
-
-
+$m  = query("SELECT * FROM mahasiswa WHERE  id = $id");
 
 
 ?>
-
-
-
-
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>detail mahasiswa</title>
+  <title>Detail Mahasiswa</title>
 </head>
+
 <body>
-  <h3>detail mahasiswa</h3>
+  <h3>Detail Mahasiswa</h3>
   <ul>
-  <li><img src="img/taufik.jpg">
-  <li> NRP : 193040019</li>
-  <LI>NAMA : taufik hidayat</LI>
-  <li>EMAIL : taufikzx10r@gmail.com</li>
-  <li>JURUSAN : teknik informatika</li>
-  <li><a href="ubah"></a> | <a href="hapus"></a></li>
-  <li><a href="latihan3.php">kembali kedaftar mahasiswa</a></li>
-  
-  </li>
+    <li><img src="img/<?= $m['gambar']; ?>" width="200" alt=""></li>
+    <li>NRP : <?= $m['nama']; ?></li>
+    <li>Nama : <?= $m['nrp']; ?></li>
+    <li>Email : <?= $m['email']; ?></li>
+    <li>Jurusan : <?= $m['jurusan']; ?></li>
+    <li><a herf="">Ubah</a> | <a href="">Hapus</a></li>
+    <li><a href="latihan3.php">Kembali ke daftar Mahasiswa</a></li>
   </ul>
 </body>
+
 </html>

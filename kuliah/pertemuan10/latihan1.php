@@ -1,28 +1,17 @@
 <?php
-// koneksi ke data base dan pilih data base nya
-$conn = mysqli_connect('localhost', 'root','','pw_193040019');
 
+$conn = mysqli_connect('localhost', 'root', '', 'pw_193040019');
 
-// query isi tabel mahasiswa
-$result = mysqli_query($conn,"SELECT*FROM mahasiswa");
+$result = mysqli_query($conn, "SELECT * FROM mahasiswa");
 
-
-//ubah data ke dalam array
 $rows = [];
-while ($row = mysqli_fetch_assoc($result)){
-$rows[] = $row;
+while ($row = mysqli_fetch_assoc($result)) {
+  $rows[] = $row;
 }
 
-
-//tampung ke variable mahasiswa
-$mahasiswa = $rows; 
-
-
-
-
+$mahasiswa = $rows;
 
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -39,36 +28,27 @@ $mahasiswa = $rows;
     <tr>
       <th>#</th>
       <th>Gambar</th>
-      <th>NRP</th>
       <th>Nama</th>
+      <th>Nrp</th>
       <th>Email</th>
       <th>Jurusan</th>
       <th>Aksi</th>
     </tr>
-
     <?php $i = 1;
-    foreach ($mahasiswa as $mahasiswa) : ?>
+    foreach ($mahasiswa as $mhs) : ?>
       <tr>
         <td><?= $i++; ?></td>
-        <td><img src="img/<?= $mahasiswa['GAMBAR']; ?>" width="60"></td>
-        <td><?= $mahasiswa['NRP']; ?></td>
-        <td><?= $mahasiswa['NAMA']; ?></td>
-        <td><?= $mahasiswa['EMAIL']; ?></td>
-        <td><?= $mahasiswa['JURUSAN']; ?></td>
+        <td><img src="img/<?= $mhs['gambar']; ?>" width="50px"></td>
+        <td><?= $mhs['nama']; ?></td>
+        <td><?= $mhs['nrp']; ?></td>
+        <td><?= $mhs['email']; ?></td>
+        <td><?= $mhs['jurusan']; ?></td>
         <td>
-          <a href="">ubah</a> | <a href="">hapus</a>
+          <a href="">Ubah</a> | <a href="">Hapus</a>
         </td>
-      
       </tr>
     <?php endforeach; ?>
   </table>
 </body>
-7
 
-
-
-
-
-
- 
 </html>
